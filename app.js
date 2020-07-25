@@ -52,6 +52,16 @@ app.post('/todos', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// detail
+app.get('/todos/:id', (req, res) => {
+  const id = req.params.id
+  return Todo.findById(id)
+    .lean()
+    .then(todo => res.render('detail', { todo }))
+    .catch(error => console.log(error))
+})
+
+// start to listen
 app.listen(port, () => {
   console.log(`The app is listening on http://localhost:${port}.`)
 })
