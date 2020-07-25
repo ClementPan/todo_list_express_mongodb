@@ -9,6 +9,9 @@ const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/todo-list', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 
+// require Todo
+const Todo = require('./models/todo') // 載入 Todo model
+
 // connection error 
 db.on('error', () => {
   console.log('mongodb error!')
@@ -16,7 +19,7 @@ db.on('error', () => {
 
 // connection success
 db.once('open', () => {
-  console.log('mongodb connected!')
+  console.log('MongoDB connected!')
 })
 
 //set view engine
@@ -25,7 +28,10 @@ app.set('view engine', 'hbs')
 
 
 app.get('/', (req, res) => {
-  res.render('index')
+  Todo.find()  // find all data, not specific one.
+    .lean() // don't process it, Mongoose.
+    .then(todos => { res.render('index', { todos: todos }) }) //use the todos data found by mongoose to bulit index.
+    .catch(error => console.error(error))
 })
 
 app.listen(port, () => {
