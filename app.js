@@ -4,9 +4,7 @@ const app = express()
 const port = 3000
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
-
-// use body-parser
-app.use(bodyParser.urlencoded({ extended: true }))
+const methodOverride = require('method-override')
 
 //  connect database
 const mongoose = require('mongoose')
@@ -31,6 +29,14 @@ db.once('open', () => {
 //set view engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }))
 app.set('view engine', 'hbs')
+
+/////// app.use 要放在最靠近路由清單的上方。
+// use method-override
+app.use(methodOverride('_method'))
+
+// use body-parser
+app.use(bodyParser.urlencoded({ extended: true }))
+
 
 // set root path
 app.get('/', (req, res) => {
@@ -73,7 +79,7 @@ app.get('/todos/:id/edit', (req, res) => {
 })
 
 // edit: from edit(post) to index
-app.post('/todos/:id/edit', (req, res) => {
+app.put('/todos/:id', (req, res) => {
   const id = req.params.id
   const { name, isDone } = req.body
   // 使用 post 送入資料，放在 req.body。 {} 解構賦值
@@ -89,7 +95,7 @@ app.post('/todos/:id/edit', (req, res) => {
 })
 
 // remove 
-app.post('/todos/:id/delete', (req, res) => {
+app.delete('/todos/:id', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)
     .then(todo => todo.remove())
