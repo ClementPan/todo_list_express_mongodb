@@ -74,10 +74,13 @@ app.get('/todos/:id/edit', (req, res) => {
 // edit: from edit(post) to index
 app.post('/todos/:id/edit', (req, res) => {
   const id = req.params.id
-  const name = req.body.name // 使用 post 送入資料，放在 req.body
+  const { name, isDone } = req.body
+  // 使用 post 送入資料，放在 req.body。 {} 解構賦值
   return Todo.findById(id)
-    .then(todo => {   //不使用 lean() 處理資料
+    .then(todo => {
       todo.name = name
+      todo.isDone = isDone === 'on'
+      console.log(todo)
       return todo.save()
     })
     .then(() => res.redirect(`/todos/${id}`))
