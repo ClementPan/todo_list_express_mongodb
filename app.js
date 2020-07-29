@@ -5,28 +5,16 @@ const port = 3000
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-// require router
-const routes = require('./routes')
 
-//  connect database
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/todo-list', { useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
+// require routes
+const routes = require('./routes')
+// require mongoose DB
+require('./config/mongoose')
 
 // require Todo
 const Todo = require('./models/todo') // 載入 Todo model
 const { urlencoded } = require('body-parser')
 const todo = require('./models/todo')
-
-// connection error 
-db.on('error', () => {
-  console.log('mongodb error!')
-})
-
-// connection success
-db.once('open', () => {
-  console.log('MongoDB connected!')
-})
 
 //set view engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }))
