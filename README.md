@@ -1,2 +1,3 @@
-### An extremely simple todo list (with no css) created with express.js and MongoDB as the database.
-#### Everything is to be created here.
+### A simple todo list (with no css) created with express.js, bootstrap and MongoDB as the database.
+### Try to create routes restfully.
+#### To be created here.
