@@ -13,9 +13,13 @@ const routes = require('./routes')
 require('./config/mongoose')
 
 // require Todo
-const Todo = require('./models/todo') // 載入 Todo model
 const { urlencoded } = require('body-parser')
+const Todo = require('./models/todo') // 載入 Todo model
 const todo = require('./models/todo')
+
+// require User
+const User = require('./models/user')
+const user = require('./models/user')
 
 //set view engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }))

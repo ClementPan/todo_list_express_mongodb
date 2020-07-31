@@ -11,8 +11,12 @@
 <body class="bg-light">
   <header>
     <nav class="navbar navbar-dark bg-primary justify-content-between">
-      <a class="navbar-brand" href="/">Todo List</a>
+      <a class="navbar-brand" href="/">
+        <h3>Todo List</h3>
+      </a>
+      {{#unless login}}
       <a class="btn btn-outline-light" href="/todos/new">Create</a>
+      {{/unless}}
     </nav>
   </header>
 
