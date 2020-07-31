@@ -9,10 +9,17 @@ router.get('/new', (req, res) => {
 
 // from new to index
 router.post('/', (req, res) => {
-  const name = req.body.name       // 從 req.body 拿出表單裡的 name 資料
-  return Todo.create({ name: name })     // 存入資料庫
-    .then(() => res.redirect('/')) // 新增完成後導回首頁
+  // const name = req.body.name       // 從 req.body 拿出表單裡的 name 資料
+  // 使用 insertMany([])一次建立多筆資料。
+  //課程中說要 String()，不知道為什麼。但實作其實好像上不用。
+  const todos = req.body.name.split(',').map(todo => ({ name: todo }))
+  Todo.insertMany(todos)
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
+
+  // return Todo.create({ name: name })     // 存入資料庫
+  //   .then(() => res.redirect('/')) // 新增完成後導回首頁
+  //   .catch(error => console.log(error))
 })
 
 // detail
