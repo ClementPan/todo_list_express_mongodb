@@ -1,19 +1,19 @@
-<div class="container mt-5">
+<div class="container mt-5" style="width: 60vh;">
   <form action="/" method="POST">
     <div class="input-group justify-content-center">
       <h2 class="title">Account Login</h2>
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Email" aria-label="Username"
-          aria-describedby="basic-addon1" name='Email'>
+          aria-describedby="basic-addon1" name='Email' value="{{loginInfo.Email}}">
       </div>
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Password" aria-label="Password"
-          aria-describedby="basic-addon1" name='Password'>
+          aria-describedby="basic-addon1" name='Password' value="{{loginInfo.Password}}">
       </div>
       <button class="btn btn-primary mt-3" type="submit">Sign in</button>
     </div>
-    {{#if error}}
-    <h5 class="btn btn-danger">{{error}}</h5>
-    {{/if}}
   </form>
+  {{#if error}}
+  <h5 class="btn btn-danger mt-4">{{error}}</h5>
+  {{/if}}
 </div>
