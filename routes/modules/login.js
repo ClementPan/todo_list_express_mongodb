@@ -46,10 +46,18 @@ router.post('/', (req, res) => {
   if ((!loginInfo.Email) || (!loginInfo.Password)) {
     res.render('login', { error: "請輸入 Username 和 Password 。", mainBlocker, loginInfo })
   }
-  User.findOne({ email: loginInfo.Email, password: loginInfo.Password })
-    .lean()
-    .then(user => res.render('loginSuccess', { firstName: user.firstName }))
-    .catch(error => res.render('login', { error: "Username 或 Password 錯誤。", mainBlocker, loginInfo }))
+  ////// database version
+  // User.findOne({ email: loginInfo.Email, password: loginInfo.Password })
+  //   .lean()
+  //   .then(user => res.render('loginSuccess', { firstName: user.firstName }))
+  //   .catch(error => res.render('login', { error: "Username 或 Password 錯誤。", mainBlocker, loginInfo }))
+
+  ///// guest mode
+  if ((loginInfo.Email === 'guest123') && (loginInfo.Password === "guest321")) {
+    res.render('loginSuccess', { firstName: "Guest" })
+  } else {
+    res.render('login', { error: "Username 或 Password 錯誤。", mainBlocker, loginInfo })
+  }
 })
 
 module.exports = router
