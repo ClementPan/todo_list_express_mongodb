@@ -14,7 +14,11 @@ router.post('/', (req, res) => {
   //課程中說要 String()，不知道為什麼。但實作其實好像上不用。
   const todos = req.body.name.split(',').map(todo => ({ name: todo }))
   Todo.insertMany(todos)
-    .then(() => res.redirect('/'))
+    // ordinary version
+    // .then(() => res.redirect('/'))
+
+    // for version with login res.redirect('/') changed to res.redirect('home'))
+    .then(() => res.redirect('/home'))
     .catch(error => console.log(error))
 })
 
@@ -57,7 +61,11 @@ router.delete('/:id', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)
     .then(todo => todo.remove())
-    .then(() => res.redirect('/'))
+    // orginary version
+    // .then(() => res.redirect('/'))
+
+    // for version with login res.redirect('/') changed to res.redirect('/home'))
+    .then(() => res.redirect('/home'))
     .catch(error => console.log(error))
 })
 
