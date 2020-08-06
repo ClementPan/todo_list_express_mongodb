@@ -25,7 +25,7 @@ const user = require('./models/user')
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }))
 app.set('view engine', 'hbs')
 
-/////// app.use 要放在最靠近路由清單的上方。
+/////// app.use 要放在最靠近路由清單的上方。  
 // use method-override
 app.use(methodOverride('_method'))
 
