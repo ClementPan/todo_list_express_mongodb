@@ -2,6 +2,9 @@
 ### Exercise for creating routes restfully.
 ### establishing a login system
 
+### Try it out here
+[Todo List](https://whispering-woodland-81286.herokuapp.com/)
+
 ### Important 
 #### After setting up:
 #### To create fake todos: npm run seed
