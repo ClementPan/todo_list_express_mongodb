@@ -9,6 +9,9 @@ const methodOverride = require('method-override')
 // require routes
 const routes = require('./routes')
 
+// use static
+app.use(express.static('public'))
+
 // require mongoose DB
 require('./config/mongoose')
 

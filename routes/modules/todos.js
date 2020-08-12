@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
     // .then(() => res.redirect('/'))
 
     // for version with login res.redirect('/') changed to res.redirect('home'))
-    .then(() => res.redirect('/home'))
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
@@ -65,7 +65,7 @@ router.delete('/:id', (req, res) => {
     // .then(() => res.redirect('/'))
 
     // for version with login res.redirect('/') changed to res.redirect('/home'))
-    .then(() => res.redirect('/home'))
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
